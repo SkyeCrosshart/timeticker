@@ -34,10 +34,7 @@ function clearTriggeredEvents () {
 
 function toggleRecurring () {
   const recurringRateInput = document.getElementById('recurringRate')
-  recurringRateInput.style.display = document.getElementById('recurring')
-    .checked
-    ? 'inline'
-    : 'none'
+  recurringRateInput.style.display = document.getElementById('recurring') .checked ? 'inline' : 'none'
 }
 
 function addEvent () {
