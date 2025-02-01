@@ -1,5 +1,5 @@
 let tickCount = 0
-let events = []
+let events = {}
 
 function incrementTick () {
   tickCount++
@@ -17,13 +17,15 @@ function decrementTick () {
 
 function resetCounter () {
   tickCount = 0
-  events = []
+  events = {}
   document.getElementById('tickCounter').innerText = tickCount
   updateEventList()
 }
 
 function clearTriggeredEvents () {
-  events = events.filter(event => !event.triggered)
+  for (let heading in events) {
+    events[heading] = events[heading].filter(event => !event.triggered)
+  }
   updateEventList()
 }
 
@@ -36,6 +38,7 @@ function toggleRecurring () {
 }
 
 function addEvent () {
+  const heading = document.getElementById("headingName").value || "Default"
   const name = document.getElementById('eventName').value
   const ticks = parseInt(document.getElementById('eventTicks').value)
   const recurring = document.getElementById('recurring').checked
@@ -43,55 +46,49 @@ function addEvent () {
     ? parseInt(document.getElementById('recurringRate').value)
     : null
   if (name && ticks > 0 && (!recurring || (recurring && recurringRate > 0))) {
-    events.push({
-      name,
-      triggerTick: tickCount + ticks,
-      triggered: false,
-      recurring,
-      recurringRate
-    })
-    events.sort((a, b) => a.triggerTick - b.triggerTick) // Sort chronologically
-    updateEventList()
+      if (!events[heading]) {
+          events[heading] = []
+      }
+      events[heading].push({ name, triggerTick: tickCount + ticks, triggered: false, recurring, recurringRate })
+      events[heading].sort((a, b) => a.triggerTick - b.triggerTick)
+      updateEventList()
   }
 }
 
 function checkEvents () {
-  events.forEach(event => {
-    if (event.triggerTick === tickCount) {
-      alert('Event Triggered: ' + event.name)
-      event.triggered = true
-      if (event.recurring) {
-        events.push({
-          name: event.name,
-          triggerTick: tickCount + event.recurringRate,
-          triggered: false,
-          recurring: true,
-          recurringRate: event.recurringRate
-        })
-        events.sort((a, b) => a.triggerTick - b.triggerTick)
-      }
-    }
-  })
+  for(let heading in events) {
+      events[heading].forEach(event => {
+        if (event.triggerTick === tickCount) {
+          alert("Event Triggered: " + event.name)
+          event.triggered = true
+          if (event.recurring) {
+            events[heading].push({ name: event.name, triggerTick: tickCount + event.recurringRate, triggered: false, recurring: true, recurringRate: event.recurringRate})
+            events[heading].sort((a, b) => a,triggerTick - b.triggerTick)
+          }
+        }
+      })
+  }
   updateEventList()
 }
 
-function deleteEvent (index) {
-  events.splice(index, 1)
+function deleteEvent (heading, index) {
+  events[heading].splice(index, 1)
   updateEventList()
 }
 
 function updateEventList () {
-  const timelineDiv = document.getElementById('timeline')
-  timelineDiv.innerHTML = ''
-  events.forEach((event, index) => {
-    const eventElement = document.createElement('div')
-    eventElement.className = 'event' + (event.triggered ? ' triggered' : '')
-    eventElement.innerHTML = `${event.name} (Tick ${event.triggerTick}) <button onclick="deleteEvent(${index})">Delete</button>`
-    timelineDiv.appendChild(eventElement)
-    if (index < events.length - 1) {
-      const marker = document.createElement('div')
-      marker.className = 'timeline-marker'
-      timelineDiv.appendChild(marker)
-    }
-  })
+  const timelinesDiv = document.getElementById("timelines")
+  timelinesDiv.innerHTML = ""
+  for (let heading in events) {
+    const headingElement = document.createElement("div")
+    headingElement.className = "heading"
+    headingElement.innerText = heading
+    timelinesDiv.appendChild(headingElement)
+    events[heading].forEach((event, index) => {
+      const eventElement = document.createElement("div")
+      eventElement.className = "event" + (event.triggered ? " triggered" : "")
+      eventElement.innerHTML = `${event.name} (Tick ${event.triggerTick}) <button onclick="deleteEvent(' ${heading}', ${index})">Delete</button>`
+      timelinesDiv.appendChild(eventElement)
+    }) 
+  }
 }

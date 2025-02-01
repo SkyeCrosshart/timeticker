@@ -10,6 +10,12 @@ body {
     margin-top: 20px;
 }
 
+.heading {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
 .event {
     display: flex;
     justify-content: space-between;
