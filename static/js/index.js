@@ -1,5 +1,6 @@
 let tickCount = 0
 let events = {}
+let headings = ["Default"]
 
 function incrementTick () {
   tickCount++
@@ -38,7 +39,7 @@ function toggleRecurring () {
 }
 
 function addEvent () {
-  const heading = document.getElementById("headingName").value || "Default"
+  const heading = document.getElementById("headingDropdown").value
   const name = document.getElementById('eventName').value
   const ticks = parseInt(document.getElementById('eventTicks').value)
   const recurring = document.getElementById('recurring').checked
@@ -107,3 +108,25 @@ function updateEventList () {
     }) 
   }
 }
+
+function addHeading() {
+  const newHeading = document.getElementById("newHeadingName").value
+  if (newHeading && !headings.includes(newHeading)) {
+    headings.push(newHeading)
+    updateHeadingDropdown()
+  }
+}
+
+function updateHeadingDropdown() {
+  const dropdown = document.getElementById("headingDropdown")
+  dropdown.innerHTML = ""
+  headings.forEach(heading => {
+    const option = document.createElement("option")
+    option.value = heading
+    option.innerText = heading
+    dropdown.appendChild(option)
+  })
+}
+
+// Initialize the dropdown with default headings
+updateHeadingDropdown()
