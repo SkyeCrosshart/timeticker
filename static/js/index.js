@@ -76,18 +76,33 @@ function deleteEvent (heading, index) {
   updateEventList()
 }
 
+function addEventToHeading(heading) {
+  const name = prompt("Enter Event Name:")
+  const ticks = parseInt(prompt("Enter Ticks from Now:"))
+  const recurring = confirm("Is this a recurring event?")
+  const recurringRate = recurring ? parseInt(prompt("Enter Recurring Rate:")) : null
+  if (name && ticks > 0 && (!recurring || (recurring && recurringRate > 0))) {
+      if (!events[heading]) {
+          events[heading] = []
+      }
+      events[heading].push({ name, triggerTick: tickCount + ticks, triggered: false, recurring, recurringRate })
+      events[heading].sort((a, b) => a.triggerTick - b.triggerTick)
+      updateEventList()
+  }
+}
+
 function updateEventList () {
   const timelinesDiv = document.getElementById("timelines")
   timelinesDiv.innerHTML = ""
   for (let heading in events) {
     const headingElement = document.createElement("div")
     headingElement.className = "heading"
-    headingElement.innerText = heading
+    headingElement.innerHTML = `${heading} <button onclick="addEventToHeading('${heading}')">Add Event</button>`
     timelinesDiv.appendChild(headingElement)
     events[heading].forEach((event, index) => {
       const eventElement = document.createElement("div")
       eventElement.className = "event" + (event.triggered ? " triggered" : "")
-      eventElement.innerHTML = `${event.name} (Tick ${event.triggerTick}) <button onclick="deleteEvent(' ${heading}', ${index})">Delete</button>`
+      eventElement.innerHTML = `${event.name} (Tick ${event.triggerTick}) <button onclick="deleteEvent('${heading}', ${index})">Delete</button>`
       timelinesDiv.appendChild(eventElement)
     }) 
   }
