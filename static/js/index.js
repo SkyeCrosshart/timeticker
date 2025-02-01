@@ -6,6 +6,7 @@ function incrementTick () {
   tickCount++
   document.getElementById('tickCounter').innerText = tickCount
   checkEvents()
+  updateEventList()
 }
 
 function decrementTick () {
@@ -13,6 +14,7 @@ function decrementTick () {
     tickCount--
     document.getElementById('tickCounter').innerText = tickCount
     checkEvents()
+    updateEventList()
   }
 }
 
