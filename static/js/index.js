@@ -92,13 +92,20 @@ function addEventToHeading(heading) {
   }
 }
 
+function deleteHeading(heading) {
+  delete events[heading]
+  headings = headings.filter(h => h !== heading)
+  updateHeadingDropdown()
+  updateEventList()
+}
+
 function updateEventList () {
   const timelinesDiv = document.getElementById("timelines")
   timelinesDiv.innerHTML = ""
   for (let heading in events) {
     const headingElement = document.createElement("div")
     headingElement.className = "heading"
-    headingElement.innerHTML = `${heading} <button onclick="addEventToHeading('${heading}')">Add Event</button>`
+    headingElement.innerHTML = `${heading} <button onclick="deleteHeading('${heading}')">Delete Heading</button>`
     timelinesDiv.appendChild(headingElement)
     events[heading].forEach((event, index) => {
       const eventElement = document.createElement("div")
