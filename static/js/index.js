@@ -66,7 +66,7 @@ function checkEvents () {
           event.triggered = true
           if (event.recurring) {
             events[heading].push({ name: event.name, triggerTick: tickCount + event.recurringRate, triggered: false, recurring: true, recurringRate: event.recurringRate})
-            events[heading].sort((a, b) => a,triggerTick - b.triggerTick)
+            events[heading].sort((a, b) => a.triggerTick - b.triggerTick)
           }
         }
       })
