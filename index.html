@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TTRPG Tick Counter</title>
+    <title>Time Ticker</title>
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/cyborg/bulmaswatch.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="static/css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
 </head>
-<body>
-    <h1>TTRPG Tick Counter</h1>
+<body class = "background">
+    <h1>Time Ticker</h1>
     <p>Current Tick: <span id="tickCounter">0</span></p>
     <button onclick="incrementTick()">Increment Tick</button>
     <button onclick="decrementTick()">Decrement Tick</button>
