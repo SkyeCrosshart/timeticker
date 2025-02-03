@@ -112,7 +112,7 @@ function updateEventList () {
     events[heading].forEach((event, index) => {
       const eventElement = document.createElement("div")
       eventElement.className = "event" + (event.triggered ? " triggered" : "")
-      eventElement.innerHTML = `${event.name} (Tick ${event.triggerTick}) <button onclick="deleteEvent('${heading}', ${index})">Delete</button>`
+      eventElement.innerHTML = `<p>${event.name} (Tick ${event.triggerTick})</p><button onclick="deleteEvent('${heading}', ${index})">Delete</button>`
       timelinesDiv.appendChild(eventElement)
     }) 
   }
