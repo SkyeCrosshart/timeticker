@@ -13,25 +13,74 @@
 </head>
 <body class = "background">
     <h1>Time Ticker</h1>
-    <p>Current Tick: <span id="tickCounter">0</span></p>
-    <button onclick="incrementTick()">Increment Tick</button>
-    <button onclick="decrementTick()">Decrement Tick</button>
-    <button onclick="resetCounter()">Reset Counter</button>
-    <button onclick="clearTriggeredEvents()">Clear Triggered Events</button>
+    <p><span id="tickCounter" style="font-size: 4em;
+    font-family: 'Cinzel';
+    text-shadow: 0px 0px 20px black;
+    ">0</span></p>
+
+    <button onclick="decrementTick()" style="
+    background-color: #00000054;
+    color: white;
+    font-family: 'Cinzel';
+">Decrease Tick</button>
+
+<button onclick="resetCounter()" style="
+background-color: #00000054;
+color: white;
+font-family: 'Cinzel';
+">Reset Counter</button>
+
+<button onclick="incrementTick()" style="
+background-color: #00000054;
+color: white;
+font-family: 'Cinzel';
+">Increase Tick</button>
     
     <h2>Add Heading</h2>
-    <input type="text" id="newHeadingName" placeholder="New Heading Name">
-    <button onclick="addHeading()">Add Heading</button>
+    <input type="text" id="newHeadingName" placeholder="New Heading Name" style="
+    background-color: #00000054;
+    color: white;
+    font-family: 'Cinzel';
+">
+
+<button onclick="addHeading()" style="
+background-color: #00000054;
+color: white;
+font-family: 'Cinzel';
+">Add Heading</button>
     
     <h2>Add Event</h2>
-    <select id="headingDropdown"></select>
-    <input type="text" id="eventName" placeholder="Event Name">
-    <input type="number" id="eventTicks" placeholder="Ticks from Now">
+    <select id="headingDropdown" style="
+    background-color: #00000054;
+    color: white;
+    font-family: 'Cinzel';
+"><option value="sam">sam</option></select>
+
+<input type="text" id="eventName" placeholder="Event Name" style="
+    background-color: #00000054;
+    color: white;
+    font-family: 'Cinzel';
+">
+
+<input type="number" id="eventTicks" placeholder="Ticks from Now" style="
+    background-color: #00000054;
+    color: white;
+    font-family: 'Cinzel';
+">
     <label><input type="checkbox" id="recurring" onchange="toggleRecurring()"> Recurring</label>
-    <input type="number" id="recurringRate" placeholder="Recurring Rate" style="display:none;">
-    <button onclick="addEvent()">Add Event</button>
+    <input type="number" id="recurringRate" placeholder="Recurring Rate" style="display: none; background-color: rgba(0, 0, 0, 0.33); color: white; font-family: Cinzel;">
+    <button onclick="addEvent()" style="
+    background-color: #00000054;
+    color: white;
+    font-family: 'Cinzel';
+">Add Event</button>
  
     <h2>Timelines</h2>
+    <button onclick="clearTriggeredEvents()" style="
+    background-color: #00000054;
+    color: white;
+    font-family: 'Cinzel';
+">Clear Triggered Events</button>
     <div id="timelines"></div>
     
     <script type="text/javascript" src="static/js/index.js"></script>
