@@ -62,7 +62,7 @@ function checkEvents () {
   for(let heading in events) {
       events[heading].forEach(event => {
         if (event.triggerTick === tickCount) {
-          alert("Event Triggered: " + event.name)
+          addAlertDiv("Event Triggered: " + event.name)
           event.triggered = true
           if (event.recurring) {
             events[heading].push({ name: event.name, triggerTick: tickCount + event.recurringRate, triggered: false, recurring: true, recurringRate: event.recurringRate})
@@ -72,6 +72,26 @@ function checkEvents () {
       })
   }
   updateEventList()
+}
+
+function addAlertDiv(alertText) {
+  let myAlertDiv = document.createElement('div');
+  myAlertDiv.classList.add('my-alert');
+  myAlertDiv.innerHTML = `
+      <p>${alertText}</p>
+      <button onclick="closeAlert(this);">Close</button>
+  `;
+  document.querySelector('#my-alerts').appendChild(myAlertDiv);
+  document.querySelector('#my-alerts-background').classList.add('show');
+  document.querySelector('#my-alerts').classList.add('show');
+}
+
+function closeAlert(element) { 
+  element.parentElement.remove();
+if(document.querySelectorAll('.my-alert').length === 0) {
+  document.querySelector('#my-alerts-background').classList.remove('show');
+  document.querySelector('#my-alerts').classList.remove('show');
+}
 }
 
 function deleteEvent (heading, index) {

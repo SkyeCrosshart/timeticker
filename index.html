@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body class = "background">
+    <div id= "my-alerts-background"></div>
+    <div id= "my-alerts"></div>
+  
     <h1>Time Ticker</h1>
     <p><span id="tickCounter" style="font-size: 4em;
     font-family: 'Cinzel';
@@ -51,7 +54,7 @@ font-family: 'Cinzel';
     <input type="number" id="recurringRate" placeholder="Recurring Rate" style="display: none; background-color: rgba(0, 0, 0, 0.33); color: white; font-family: Cinzel;">
     <button onclick="addEvent()">Add Event</button>
  
-    <h2>Timelines</h2>
+    <h2 class= "timelineTitle"> Timelines</h2>
     <button onclick="clearTriggeredEvents()">Clear Triggered Events</button>
     <div id="timelines"></div>
     
