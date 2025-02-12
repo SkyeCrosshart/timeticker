@@ -192,6 +192,10 @@ function updateHeadingDropdown() {
   })
 }
 
+function makeAppVisible() {
+  document.getElementById("body").classList.remove("hidden")
+}
+
 // Initialize the dropdown with default headings
 restoreLocalStorage()
 document.getElementById("tickCounter").innerText = tickCount

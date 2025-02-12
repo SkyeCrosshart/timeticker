@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
 </head>
-<body class = "background">
+<body class="background hidden" id="body" onload="makeAppVisible()">
     <div id= "my-alerts-background"></div>
     <div id= "my-alerts"></div>
   
@@ -36,7 +36,7 @@ font-family: 'Cinzel';
 ">Increase Tick</button>
     
     <h2>Add Heading</h2>
-    <input type="text" id="newHeadingName" placeholder="New Heading Name">
+    <input type="text" id="newHeadingName" placeholder="New Heading Name" maxlength="30">
 
 <button onclick="addHeading()" style="
 background-color: #00000054;
@@ -47,9 +47,9 @@ font-family: 'Cinzel';
     <h2>Add Event</h2>
     <select id="headingDropdown"><option value="sam">sam</option></select>
 
-<input type="text" id="eventName" placeholder="Event Name">
+<input type="text" id="eventName" placeholder="Event Name" maxlength="30">
 
-<input type="number" id="eventTicks" placeholder="Ticks from Now">
+<input type="number" id="eventTicks" placeholder="Ticks from Now" maxlength="30">
     <label><input type="checkbox" id="recurring" onchange="toggleRecurring()"> Recurring</label>
     <input type="number" id="recurringRate" placeholder="Recurring Rate" style="display: none; background-color: rgba(0, 0, 0, 0.33); color: white; font-family: Cinzel;">
     <button onclick="addEvent()">Add Event</button>
